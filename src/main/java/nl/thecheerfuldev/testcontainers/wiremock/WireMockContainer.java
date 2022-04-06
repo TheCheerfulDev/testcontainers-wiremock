@@ -55,12 +55,12 @@ public class WireMockContainer extends GenericContainer<WireMockContainer> {
 
     public WireMockContainer withStubMappingForClasspathResource(final String... resource) {
         this.stubsFromClasspath.addAll(Arrays.asList(resource));
-        return self();
+        return this;
     }
 
     public WireMockContainer withStubMappingForString(final String... stub) {
         this.stubsFromTextBlock.addAll(Arrays.asList(stub));
-        return self();
+        return this;
     }
 
     public int getHttpPort() {
