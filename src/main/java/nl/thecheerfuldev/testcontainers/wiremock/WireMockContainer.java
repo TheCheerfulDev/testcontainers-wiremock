@@ -1,5 +1,6 @@
 package nl.thecheerfuldev.testcontainers.wiremock;
 
+import lombok.SneakyThrows;
 import org.testcontainers.containers.BindMode;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.wait.strategy.HttpWaitStrategy;
@@ -17,7 +18,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WireMockContainer<SELF extends WireMockContainer<SELF>> extends GenericContainer<SELF> {
+public class WireMockContainer extends GenericContainer<WireMockContainer> {
 
     public static final String IMAGE = "wiremock/wiremock";
     public static final String DEFAULT_TAG = "2.32.0";
@@ -52,14 +53,14 @@ public class WireMockContainer<SELF extends WireMockContainer<SELF>> extends Gen
         addExposedPorts(WIREMOCK_HTTP_PORT, WIREMOCK_HTTPS_PORT);
     }
 
-    public SELF withStubMappingForClasspathResource(final String... resource) {
+    public WireMockContainer withStubMappingForClasspathResource(final String... resource) {
         this.stubsFromClasspath.addAll(Arrays.asList(resource));
-        return self();
+        return this;
     }
 
-    public SELF withStubMappingForString(final String... stub) {
+    public WireMockContainer withStubMappingForString(final String... stub) {
         this.stubsFromTextBlock.addAll(Arrays.asList(stub));
-        return self();
+        return this;
     }
 
     public int getHttpPort() {
@@ -84,19 +85,16 @@ public class WireMockContainer<SELF extends WireMockContainer<SELF>> extends Gen
     }
 
     @Override
+    @SneakyThrows({IOException.class, InterruptedException.class})
     public void start() {
         super.start();
         HttpClient httpClient = HttpClient.newHttpClient();
-        stubsFromTextBlock.forEach(stubContent -> {
+        for (String stubContent : stubsFromTextBlock) {
             HttpRequest httpRequest =
                     HttpRequest.newBuilder(URI.create(getHttpUrl() + "/__admin/mappings/new"))
                             .POST(HttpRequest.BodyPublishers.ofString(stubContent))
                             .build();
-            try {
-                httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            } catch (IOException | InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
+            httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+        }
     }
 }
