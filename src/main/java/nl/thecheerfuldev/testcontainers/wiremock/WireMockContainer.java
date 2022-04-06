@@ -53,11 +53,25 @@ public class WireMockContainer extends GenericContainer<WireMockContainer> {
         addExposedPorts(WIREMOCK_HTTP_PORT, WIREMOCK_HTTPS_PORT);
     }
 
+    /**
+     * Returns the WireMockContainer object with WireMock stub configuration loaded.
+     *
+     * @param resource one or more resource paths that directo to either
+     *                 a directory or a specific file
+     * @return configured WireMockContainer
+     */
     public WireMockContainer withStubMappingForClasspathResource(final String... resource) {
         this.stubsFromClasspath.addAll(Arrays.asList(resource));
         return this;
     }
 
+    /**
+     * Returns the WireMockContainer object with WireMock stub
+     * configuration loaded.
+     *
+     * @param stub one or more valid WireMock json configurations
+     * @return configured WireMockContainer
+     */
     public WireMockContainer withStubMappingForString(final String... stub) {
         this.stubsFromTextBlock.addAll(Arrays.asList(stub));
         return this;
