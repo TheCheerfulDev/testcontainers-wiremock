@@ -1,0 +1,12 @@
+{
+  "request": {
+    "urlPath": "/api/test"
+  },
+  "response": {
+    "status": 200,
+    "body": "Content for /api/test",
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}
