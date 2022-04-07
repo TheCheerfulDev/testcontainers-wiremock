@@ -19,6 +19,15 @@
         </license>
     </licenses>
 
+    <developers>
+        <developer>
+            <name>Mark Hendriks</name>
+            <email>mark@markhendriks.nl</email>
+            <organization>github</organization>
+            <organizationUrl>https://github.com/TheCheerfulDev</organizationUrl>
+        </developer>
+    </developers>
+
     <scm>
         <developerConnection>scm:git:https://github.com/TheCheerfulDev/testcontainers-wiremock.git</developerConnection>
         <connection>scm:git:https://github.com/TheCheerfulDev/testcontainers-wiremock.git</connection>
