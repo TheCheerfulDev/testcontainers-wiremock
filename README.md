@@ -42,5 +42,5 @@ Add the following dependency to your `pom.xml/build.gradle file`:
 
 ### Gradle
 ```groovy
-testImplementation "org.testcontainers:mockserver:1.16.3"
+testImplementation "nl.thecheerfuldev:testcontainers-wiremock:1.16.3"
 ```
