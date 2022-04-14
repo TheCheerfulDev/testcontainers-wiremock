@@ -34,7 +34,7 @@ Add the following dependency to your `pom.xml/build.gradle file`:
 <dependency>
     <groupId>nl.thecheerfuldev</groupId>
     <artifactId>testcontainers-wiremock</artifactId>
-    <version>1.16.3</version>
+    <version>1.17.0</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -42,5 +42,5 @@ Add the following dependency to your `pom.xml/build.gradle file`:
 
 ### Gradle
 ```groovy
-testImplementation "nl.thecheerfuldev:testcontainers-wiremock:1.16.3"
+testImplementation "nl.thecheerfuldev:testcontainers-wiremock:1.17.0"
 ```
