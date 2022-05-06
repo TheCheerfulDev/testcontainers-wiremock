@@ -6,7 +6,7 @@
 
     <groupId>nl.thecheerfuldev</groupId>
     <artifactId>testcontainers-wiremock</artifactId>
-    <version>1.17.0</version>
+    <version>1.17.1</version>
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>A Testcontainers Module for WireMock</description>
